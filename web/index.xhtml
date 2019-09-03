@@ -1,14 +1,69 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-    </h:body>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                
+                <title>XXX</title>
+                
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <br></br>
+                    <div align="center">
+                    Proyecto 
+                    </div>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Derechos reservados :D
+                </p:layoutUnit>
+
+                
+
+                <p:layoutUnit position="center">     
+                    <h:form id="formularioIngreso" >
+                        <p:messages showDetail="true"/>
+
+                        <div align="center">
+
+                            <br></br>
+                            <br></br>
+                            <h:outputText value="Usuario"/>
+                            <br></br>
+                            <p:inputText id="txtUsuario" binding="#{usuarioVista.txtUsuario}" 
+                                         required="True" requiredMessage="Usuario obligatoria"/>
+
+                            <br></br>
+                            <h:outputText value="Contraseña"/>
+                            <br></br>
+                            <p:password id="txtClave" binding="#{usuarioVista.txtClave}" 
+                                        required="True" requiredMessage="Clave obligatoria"/>
+
+                            <br></br>
+                            <br></br>
+                            <p:commandButton value="Ingresar"
+                                             id="btnIngresar" 
+                                             update="formularioIngreso" 
+                                             action="#{usuarioVista.ingresar()}"
+                                             style="margin-right:20px;" 
+                                             styleClass="ui-priority-primary" />
+                        </div>
+                    </h:form>
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+    </f:view>
 </html>
 

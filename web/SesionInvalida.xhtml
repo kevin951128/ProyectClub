@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Inicie sesión</title>
+                <link rel="shortcut icon" href="favicon.ico"/>
+            </f:facet>
+
+            <script>
+                //ingresa el tiempo en formato "minutos:segundos" El rango de minutos debe ser de 0 a infinito. El rango de segundos debe ser de 0 a 59
+                var limit = "0:05";
+                if (document.images) {
+                    var parselimit = limit.split(":");
+                    parselimit = parselimit[0] * 60 + parselimit[1] * 1;
+                }
+                function begintimer() {
+                    if (!document.images)
+                        return;
+                    if (parselimit === 1)
+                        window.location = "index.xhtml";
+                    else {
+                        parselimit -= 1;
+                        curmin = Math.floor(parselimit / 60);
+                        cursec = parselimit % 60;
+                        if (curmin === 0)
+                        {
+                            curtime = cursec + " Segundos";
+                            document.getElementById("tiempo").innerHTML = curtime;
+                        }
+
+                        window.status = curtime;
+                        setTimeout("begintimer()", 1000);
+                    }
+                }
+                //-->
+            </script>
+        </h:head>
+
+        <h:body onload='begintimer();'>
+            <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="190" resizable="true" closable="true" collapsible="true" style="text-align: center;background-color: white !important;">
+                <div align="center">
+                    <h:graphicImage url="images/banner.png" width="100%" height="100%" alt="Inicie sesión primero"  />
+                </div>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="80" closable="true" collapsible="true" style="text-align: center">
+                <div align="center">
+                    <h:graphicImage url="images/pie.png" width="100%" height="100%" alt="Ingreso"  />
+                </div>
+            </p:layoutUnit>
+            <p:layoutUnit position="center" >
+
+                <p:panel id="panel" header="Sesión Inválida">
+                    <div align="center">
+                        <h:outputText value="No ha Iniciado Sesión o ésta ya ha Caducado!"/>
+                        <br/>
+                        <h:outputText value="Será Redireccionado a la Página Principal en "/><b><font color="#ff0000"><span id="tiempo"></span></font></b>                
+                    </div>
+                </p:panel>
+            </p:layoutUnit>
+                </p:layout>
+        </h:body>
+
+    </f:view>
+</html>
