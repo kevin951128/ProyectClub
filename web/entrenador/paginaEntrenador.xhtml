@@ -20,7 +20,7 @@
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
                     <br></br>
                     <div align="center">
-                    Aplicación Web Multinivel
+                    Bienvenido entrenador
                     </div>
                 </p:layoutUnit>
 
@@ -32,87 +32,30 @@
                     <h:form>
                         <p:menu>
                             <p:submenu label="Resources">
-                                <p:menuitem value="Contratista" url="paginaContratistas.xhtml" />
-                                <p:menuitem value="Ingreso" url="paginaIngreso.xhtml" />
-                                <p:menuitem value="Empleados" url="paginaEmpleado.xhtml" />
-                                <p:menuitem value="Contratos" url="paginaContratos.xhtml" />
-                                <p:menuitem value="Consultas" url="paginaConsultas.xhtml" />
-                                <p:menuitem value="Salir" action="#{usuarioVista.cerrarSesion()}"/>
+                                <p:menuitem value="Salir" action="#{entrenadorVista.cerrarSesion()}"/>
                             </p:submenu>
                         </p:menu>
                     </h:form>
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
-                    <h:form id="formularioContratista">
-                        <p:messages id="mensajes" showDetail="true"/>
-                        <p:panelGrid columns ="6" id="panelC">
-                            <h:outputText value="Nit:"/>
-                            <p:inputText id="txtNit" binding="#{contratistaVista.txtNitContratista}" rendered="true" requiredMessage="El nit es obligatorio"/>
-                            <h:outputText value="Nombre:"/>
-                            <p:inputText id="txtNombre" binding="#{contratistaVista.txtNombreContratista}"/>
-                            <h:outputText value="Estado:"/>
-                            <p:selectOneMenu id="cmbEstado" binding="#{contratistaVista.cmbEstadoContratista}">
-                                <f:selectItem itemLabel="ACTIVO" itemValue="ACTIVO"/>
-                                <f:selectItem itemLabel="INACTIVO" itemValue="INACTIVO"/>
-                            </p:selectOneMenu>
-                        </p:panelGrid>
-                        <p:commandButton value="Registrar" 
-                                         actionListener="#{contratistaVista.registrarContratista()}" 
-                                         update="formularioContratista"/>
-                        <p:commandButton value="Modificar" 
-                                         actionListener="#{contratistaVista.modificarContratista()}" 
-                                         update="formularioContratista"/>
-                        <p:commandButton value="Eliminar" 
-                                         action="#{contratistaVista.eliminarContratista()}" 
-                                         update="formularioContratista">
-                            <p:confirm header="Confirmación" message="¿Está seguro que desea eliminar contratista?" icon="pi pi-exclamation-triangle" />
-                        </p:commandButton>
-                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                            <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
-                        </p:confirmDialog> 
-                        <p:commandButton value="Cargar de archivo" 
-                                         action="paginaCargaContratistas.xhtml" 
-                                         update="formularioContratista"/>
+                    <h:form id="formularioEntrenador">
+                        <p:growl id="mensajes" showDetail="true"/>
                         
-
-
-                        <p:dataTable var="c" value="#{contratistaVista.listaContratistas}" rows="10"
-                                     paginator="true"
-                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     rowsPerPageTemplate="5,10,15"
-                                     selection="#{contratistaVista.selectedContratista}"
-                                     selectionMode="single"
-                                     rowKey="#{c.codigocontratista}">
-                            <p:ajax event="rowSelect" 
-                                    listener="#{contratistaVista.seleccionarContratista}" 
-                                    update=":formularioContratista:panelC" />
-                            <p:column headerText="Nit">
-                                <h:outputText value="#{c.nitcontratista}" />
-                            </p:column>
-
-                            <p:column headerText="Nombre">
-                                <h:outputText value="#{c.nombrecontratista}" />
-                            </p:column>
-
-                            <p:column headerText="Estado">
-                                <h:outputText value="#{c.estadocontratista}" />
-                            </p:column>
-
-                            <p:column headerText="Contratos">
-                                <h:outputText value="#{c.contratosList.size()}" />
-                            </p:column>
-
-                            <f:facet name="paginatorTopLeft">
-                                <p:commandButton type="button" icon="pi pi-refresh" />
-                            </f:facet>
-
-                            <f:facet name="paginatorBottomRight">
-                                <p:commandButton type="button" icon="pi pi-cloud-upload" />
-                            </f:facet>
-
-                        </p:dataTable>
+                        <div align="center">
+                            
+                        <p:commandButton value="Registrar Clase" 
+                                         update="formularioEntrenador"/>
+                        <p:commandButton value="Registrar Asistencia"  
+                                         update="formularioEntrenador"/>
+                        <p:commandButton value="Consultar Alumnos" 
+                                         update="formularioEntrenador"/>
+                        </div>
+                        
+                        <div align="center">
+                            <img src="Inicio.jpg"/>
+                        </div>
+                              
                     </h:form>
                 </p:layoutUnit>
 
