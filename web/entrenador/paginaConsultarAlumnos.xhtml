@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Univalle</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <br></br>
+                    <div align="center">
+                        Bienvenido al sistema de consulta de alumnos
+                    </div>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Derechos reservados :D
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Menú" collapsible="true">
+                    <h:form>
+                        <p:menu>
+                            <p:submenu label="Resources">
+                                <p:menuitem value="Volver" url="paginaEntrenador.xhtml"/>
+                                <p:menuitem value="Salir" action="#{alumnoVista.cerrarSesion()}"/>
+                            </p:submenu>
+                        </p:menu>
+                    </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <h:form id="formularioAlumno">
+                        <p:growl id="mensajes" showDetail="true"/>
+
+                        <p:dataTable var="a" value="#{alumnoVista.listaAlumnos}" rows="10"
+                                     paginator="true"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15">
+                            <p:column headerText="Documento">
+                                <h:outputText value="#{a.documento}" />
+                            </p:column>
+
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{a.nombre}" />
+                            </p:column>
+
+                            <p:column headerText="Apellido">
+                                <h:outputText value="#{a.apellido}" />
+                            </p:column>
+
+                            <p:column headerText="Grado">
+                                <h:outputText value="#{a.grado}" />
+                            </p:column>
+                            
+                            <p:column headerText="Categoría">
+                                <h:outputText value="#{a.categoriaidCategoria.nombre}" />
+                            </p:column>
+
+                            <p:column headerText="Telefono">
+                                <h:outputText value="#{a.telefono}" />
+                            </p:column>
+                            
+                            <p:column headerText="Dirección">
+                                <h:outputText value="#{a.direccion}" />
+                            </p:column>
+                            
+                            <p:column headerText="EPS">
+                                <h:outputText value="#{a.eps}" />
+                            </p:column>
+                                                        
+                            <f:facet name="paginatorTopLeft">
+                                <p:commandButton type="button" icon="pi pi-refresh" />
+                            </f:facet>
+
+                            <f:facet name="paginatorBottomRight">
+                                <p:commandButton type="button" icon="pi pi-cloud-upload" />
+                            </f:facet>
+
+                        </p:dataTable>
+                        
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
