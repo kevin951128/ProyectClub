@@ -17,5 +17,6 @@ import modelo.Clase;
 public interface ClaseLogicaLocal {
     
     public List<Clase> consultarClases();
+    public void RegistrarClase(Clase c) throws Exception;
     
 }

@@ -46,7 +46,7 @@ public class ClaseVista {
     private Calendar fecha;
     private Calendar hora;
     private SelectOneMenu cmbEntrenador;
-    private SelectOneMenu cmbCategoría;
+    private SelectOneMenu cmbCategoria;
     private List<String> listaEntrenadores;
     private List<String> listaCategorias;
     private InputText txtDescripcion;
@@ -92,12 +92,12 @@ public class ClaseVista {
         this.cmbEntrenador = cmbEntrenador;
     }
 
-    public SelectOneMenu getCmbCategoría() {
-        return cmbCategoría;
+    public SelectOneMenu getCmbCategoria() {
+        return cmbCategoria;
     }
 
-    public void setCmbCategoría(SelectOneMenu cmbCategoría) {
-        this.cmbCategoría = cmbCategoría;
+    public void setCmbCategoria(SelectOneMenu cmbCategoria) {
+        this.cmbCategoria = cmbCategoria;
     }
 
     public List<String> getListaEntrenadores() {
@@ -143,14 +143,37 @@ public class ClaseVista {
         this.txtLugar = txtLugar;
     }
     
-    public void registrarClase(){
+    public void registrarClase() throws Exception{
         Clase nuevaClase = new Clase();
         nuevaClase.setDescripcion(txtDescripcion.getValue().toString());
         nuevaClase.setLugar(txtLugar.getValue().toString());
         nuevaClase.setHorario((Date) hora.getValue());
         nuevaClase.setFecha((Date) fecha.getValue());
-        //e = entrenadorLogica.consultarxCodigo((int) cmbEntrenador.getValue());
-//        System.out.println(cmbEntrenador.getValue());
+        
+        if(cmbEntrenador.getValue().equals("Kevin Vargas")){
+            e = entrenadorLogica.consultarxCodigo(1);
+        }
+        if(cmbEntrenador.getValue().equals("Ivan Reyes")){
+            e = entrenadorLogica.consultarxCodigo(2);
+        }
+        nuevaClase.setEntrenadoridEntrenador(e);
+        
+        
+        if(cmbCategoria.getValue().toString().equals("Infantil")){
+            c = categoriaLogica.consultarxCodigo(1);
+        }
+        if(cmbCategoria.getValue().toString().equals("Juvenil")){
+            c = categoriaLogica.consultarxCodigo(2);
+        }
+        if(cmbCategoria.getValue().toString().equals("Mayores")){
+            c = categoriaLogica.consultarxCodigo(3);
+        }
+        
+        
+        nuevaClase.setCategoriaidCategoria(c);
+        
+        claseLogica.RegistrarClase(nuevaClase);
+        
         
     }
     

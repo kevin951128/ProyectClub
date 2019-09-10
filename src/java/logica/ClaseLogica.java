@@ -28,4 +28,18 @@ public class ClaseLogica implements ClaseLogicaLocal {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+    @Override
+    public void RegistrarClase(Clase c) throws Exception {
+       if(c == null){
+           throw new Exception("Error, los campos deben estar llenos");
+       }
+       if(c.getFecha().equals(null)){
+           throw new Exception("Error, seleccione una fecha para la clase");
+       }
+       if(c.getHorario().equals(null)){
+           throw new Exception("Error, seleccione un horario para la clase");
+       }
+       claseDAO.create(c);
+    }
 }

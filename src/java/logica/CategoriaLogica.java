@@ -28,4 +28,10 @@ public class CategoriaLogica implements CategoriaLogicaLocal {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+    @Override
+    public Categoria consultarxCodigo(int codigo) {
+        Categoria objCategoria = categoriaDAO.find(codigo);
+        return objCategoria;
+    }
 }

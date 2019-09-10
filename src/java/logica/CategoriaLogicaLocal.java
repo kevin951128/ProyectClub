@@ -16,4 +16,5 @@ import modelo.Categoria;
 @Local
 public interface CategoriaLogicaLocal {
     public List<Categoria> consultarCategorias();
+    public Categoria consultarxCodigo(int codigo);
 }

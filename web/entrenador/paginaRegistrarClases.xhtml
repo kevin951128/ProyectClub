@@ -49,13 +49,13 @@
                                 <f:selectItems value="#{claseVista.listaEntrenadores}"/>
                             </p:selectOneMenu>    
                             <h:outputText value="Categoría:"/>
-                            <p:selectOneMenu id="cmbCategoria" binding="#{claseVista.cmbCategoría}">
+                            <p:selectOneMenu id="cmbCategoria" binding="#{claseVista.cmbCategoria}">
                                 <f:selectItems value="#{claseVista.listaCategorias}"/>
                             </p:selectOneMenu>
                             <h:outputText value="Fecha:"/>
                             <p:calendar id="clnFecha" 
                                         binding="#{claseVista.fecha}"
-                                        value="#{calendarView.date9}" 
+                                        value="#{calendarView.date1}" 
                                         pattern="dd-MM-yyyy" 
                                         mask="true" />
                             <h:outputText value="Horario:"/>
@@ -67,31 +67,14 @@
                             <h:outputText value="Descripción:"/>
                             <p:inputText id="txtDescripcion" binding="#{claseVista.txtDescripcion}"/>
                             <h:outputText value="Lugar:"/>
-                            <p:inputText id="txtDescripcion" binding="#{claseVista.txtLugar}"/>
+                            <p:inputText id="txtLugar" binding="#{claseVista.txtLugar}"/>
                         </p:panelGrid>
 
+                        <p:commandButton id="btnRegistrar"
+                                         value="Registrar"
+                                         action="#{claseVista.registrarClase()}"
+                                         update="formularioClase"/>
                         
-                        <div align="center">
-                            <p:commandButton value="Prueba"
-                                             id="btnPrueba"
-                                             update="formularioClase"/>
-                            <p:commandButton value="Registrar"
-                                             id="btnRegistrar" 
-                                             update="formularioClase"/>
-                            <p:commandButton value="Modificar"
-                                             id="btnModificar" 
-                                             update="formularioClase"/>
-                            <p:commandButton value="Eliminar"
-                                             id="btnEliminar" 
-                                             update="formularioClase">
-                                <p:confirm header="Confirmación" message="¿Está seguro que desea eliminar contratista?" icon="pi pi-exclamation-triangle" />
-                            </p:commandButton>
-                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
-                            </p:confirmDialog>
-                        </div>
-
                         <p:dataTable var="c" value="#{claseVista.listaClases}" rows="10"
                                      paginator="true"
                                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -100,12 +83,12 @@
                                 <h:outputText value="#{c.entrenadoridEntrenador.usuarioidUsuario.nombre} #{c.entrenadoridEntrenador.usuarioidUsuario.apellido}" />
                             </p:column>
 
-                            <p:column headerText="Categoría">
+                            <p:column headerText="Categoría">   
                                 <h:outputText value="#{c.categoriaidCategoria.nombre}"/>
                             </p:column>
 
                             <p:column headerText="Fecha">
-                                <h:outputText value="Dia: #{c.fecha.day} Mes: #{c.fecha.month} Año: #{c.fecha.year + 1900}" />
+                                <h:outputText value="#{c.fecha.date} - #{c.fecha.month + 1} - #{c.fecha.year + 1900}" />
                             </p:column>
 
                             <p:column headerText="Horario">
