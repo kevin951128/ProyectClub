@@ -8,25 +8,22 @@ package logica;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import modelo.Entrenador;
-import persistencia.EntrenadorFacadeLocal;
+import modelo.Categoria;
+import persistencia.CategoriaFacadeLocal;
 
 /**
  *
  * @author Kevin
  */
-
-
-
 @Stateless
-public class EntrenadorLogica implements EntrenadorLogicaLocal {
+public class CategoriaLogica implements CategoriaLogicaLocal {
 
     @EJB
-    public EntrenadorFacadeLocal entrenadorDAO;
+    private CategoriaFacadeLocal categoriaDAO;
     
     @Override
-    public List<Entrenador> consultarEntrenadores() {
-        return entrenadorDAO.findAll();
+    public List<Categoria> consultarCategorias() {
+        return categoriaDAO.findAll();
     }
 
     // Add business logic below. (Right-click in editor and choose

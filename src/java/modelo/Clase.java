@@ -58,7 +58,8 @@ public class Clase implements Serializable {
     @Column(name = "Lugar")
     private String lugar;
     @Column(name = "Fecha")
-    private Integer fecha;
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
     @ManyToMany(mappedBy = "claseList")
     private List<Alumno> alumnoList;
     @JoinColumn(name = "Categoria_idCategoria", referencedColumnName = "idCategoria")
@@ -107,11 +108,11 @@ public class Clase implements Serializable {
         this.lugar = lugar;
     }
 
-    public Integer getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(Integer fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 

@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Univalle</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <br></br>
+                    <div align="center">
+                        Bienvenido al sistema de consulta de clases
+                    </div>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Derechos reservados :D
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Menú" collapsible="true">
+                    <h:form>
+                        <p:menu>
+                            <p:submenu label="Resources">
+                                <p:menuitem value="Volver" url="paginaEntrenador.xhtml"/>
+                                <p:menuitem value="Salir" action="#{claseVista.cerrarSesion()}"/>
+                            </p:submenu>
+                        </p:menu>
+                    </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <h:form id="formularioClase">
+                        <p:growl id="mensajes" showDetail="true"/>
+
+                        <p:panelGrid columns ="8" id="panelC">
+                            <h:outputText value="Entrenador:"/>
+                            <p:selectOneMenu id="cmbEntrenador" binding="#{claseVista.cmbEntrenador}">
+                                <f:selectItems value="#{claseVista.listaEntrenadores}"/>
+                            </p:selectOneMenu>    
+                            <h:outputText value="Categoría:"/>
+                            <p:selectOneMenu id="cmbCategoria" binding="#{claseVista.cmbCategoría}">
+                                <f:selectItems value="#{claseVista.listaCategorias}"/>
+                            </p:selectOneMenu>
+                            <h:outputText value="Fecha:"/>
+                            <p:calendar id="clnFecha" 
+                                        binding="#{claseVista.fecha}"
+                                value="#{calendarView.date9}" 
+                                pattern="dd-MM-yyyy" 
+                                mask="true" />
+                            <h:outputText value="Horario:"/>
+                            <p:calendar id="clnHora" 
+                                        binding="#{claseVista.hora}"
+                                value="#{calendarView.horaInicio}" 
+                                pattern="HH:mm" 
+                                timeOnly="true"  />
+                            <h:outputText value="Descripción:"/>
+                            <p:inputText id="txtDescripcion" binding="#{claseVista.txtDescripcion}"/>
+                            <h:outputText value="Lugar:"/>
+                            <p:inputText id="txtDescripcion" binding="#{claseVista.txtLugar}"/>
+                            
+                            
+                            
+                        </p:panelGrid>
+                        
+                        <p:dataTable var="c" value="#{claseVista.listaClases}" rows="10"
+                                     paginator="true"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15">
+                            <p:column headerText="Entrenador">
+                                <h:outputText value="#{c.entrenadoridEntrenador.usuarioidUsuario.nombre} #{c.entrenadoridEntrenador.usuarioidUsuario.apellido}" />
+                            </p:column>
+
+                            <p:column headerText="Categoría">
+                                <h:outputText value="#{c.categoriaidCategoria.nombre}"/>
+                            </p:column>
+
+                            <p:column headerText="Fecha">
+                                <h:outputText value="Dia: #{c.fecha.day} Mes: #{c.fecha.month} Año: #{c.fecha.year + 1900}" />
+                            </p:column>
+
+                            <p:column headerText="Horario">
+                                <h:outputText value="#{c.horario.hours}:#{c.horario.minutes}" />
+                            </p:column>
+                            
+                            <p:column headerText="Lugar">
+                                <h:outputText value="#{c.lugar}" />
+                            </p:column>
+
+                            <f:facet name="paginatorTopLeft">
+                                <p:commandButton type="button" icon="pi pi-refresh" />
+                            </f:facet>
+
+                            <f:facet name="paginatorBottomRight">
+                                <p:commandButton type="button" icon="pi pi-cloud-upload" />
+                            </f:facet>
+
+                        </p:dataTable>
+                        
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

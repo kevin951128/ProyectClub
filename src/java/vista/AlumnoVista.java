@@ -45,7 +45,6 @@ public class AlumnoVista {
     }
     
     
-    
     public void cerrarSesion() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("usuario");

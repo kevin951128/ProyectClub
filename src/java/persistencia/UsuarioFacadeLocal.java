@@ -24,13 +24,13 @@ public interface UsuarioFacadeLocal {
     void remove(Usuario usuario);
 
     Usuario find(Object id);
-    
-    Usuario findxCedula(BigInteger cedula);
 
     List<Usuario> findAll();
 
     List<Usuario> findRange(int[] range);
 
     int count();
+    
+    Usuario findxCedula(BigInteger cedula);
     
 }

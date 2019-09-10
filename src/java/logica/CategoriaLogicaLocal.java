@@ -7,13 +7,13 @@ package logica;
 
 import java.util.List;
 import javax.ejb.Local;
-import modelo.Entrenador;
+import modelo.Categoria;
 
 /**
  *
  * @author Kevin
  */
 @Local
-public interface EntrenadorLogicaLocal {
-    public List<Entrenador> consultarEntrenadores();
+public interface CategoriaLogicaLocal {
+    public List<Categoria> consultarCategorias();
 }
