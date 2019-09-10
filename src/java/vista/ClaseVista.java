@@ -7,6 +7,7 @@ package vista;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,6 +51,8 @@ public class ClaseVista {
     private List<String> listaCategorias;
     private InputText txtDescripcion;
     private InputText txtLugar;
+    private Entrenador e;
+    private Categoria c;
     /**
      * Creates a new instance of ClaseVista
      */
@@ -140,7 +143,16 @@ public class ClaseVista {
         this.txtLugar = txtLugar;
     }
     
-    
+    public void registrarClase(){
+        Clase nuevaClase = new Clase();
+        nuevaClase.setDescripcion(txtDescripcion.getValue().toString());
+        nuevaClase.setLugar(txtLugar.getValue().toString());
+        nuevaClase.setHorario((Date) hora.getValue());
+        nuevaClase.setFecha((Date) fecha.getValue());
+        //e = entrenadorLogica.consultarxCodigo((int) cmbEntrenador.getValue());
+//        System.out.println(cmbEntrenador.getValue());
+        
+    }
     
     public void cerrarSesion() {
         try {

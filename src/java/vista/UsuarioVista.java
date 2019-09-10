@@ -7,6 +7,8 @@ package vista;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -27,10 +29,10 @@ import org.primefaces.component.password.Password;
 @Named(value = "usuarioVista")
 @RequestScoped
 public class UsuarioVista {
-    
+
     @EJB
     private UsuarioLogicaLocal usuarioLogica;
-    
+
     private InputText txtUsuario;
     private Password txtClave;
     private CommandButton btnIngresar;
@@ -64,12 +66,12 @@ public class UsuarioVista {
     public void setBtnIngresar(CommandButton btnIngresar) {
         this.btnIngresar = btnIngresar;
     }
-    
-    public void ingresar(){
+
+    public void ingresar() {
         try {
             Usuario nuevoUsuario = new Usuario();
             nuevoUsuario.setCedula(BigInteger.valueOf(Long.parseLong(txtUsuario.getValue().toString())));
-            nuevoUsuario.setClave(txtClave.getValue().toString());
+            nuevoUsuario.setClave(getMD5(txtClave.getValue().toString()));
             Usuario usuarioLogueado = usuarioLogica.ingresar(nuevoUsuario);
             //Se guarda al usuario en la sesión
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuarioLogueado);
@@ -80,13 +82,29 @@ public class UsuarioVista {
             Logger.getLogger(UsuarioVista.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void cerrarSesion(){
+
+    public void cerrarSesion() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("usuario");
             FacesContext.getCurrentInstance().getExternalContext().redirect("../index.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(UsuarioVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static String getMD5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(input.getBytes());
+            BigInteger number = new BigInteger(1, messageDigest);
+            String hashtext = number.toString(16);
+
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            return hashtext;
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
         }
     }
 }

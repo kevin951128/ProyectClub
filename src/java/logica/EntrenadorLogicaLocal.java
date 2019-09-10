@@ -16,4 +16,5 @@ import modelo.Entrenador;
 @Local
 public interface EntrenadorLogicaLocal {
     public List<Entrenador> consultarEntrenadores();
+    public Entrenador consultarxCodigo(int codigo);
 }

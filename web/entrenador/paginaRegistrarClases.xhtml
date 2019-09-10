@@ -55,24 +55,43 @@
                             <h:outputText value="Fecha:"/>
                             <p:calendar id="clnFecha" 
                                         binding="#{claseVista.fecha}"
-                                value="#{calendarView.date9}" 
-                                pattern="dd-MM-yyyy" 
-                                mask="true" />
+                                        value="#{calendarView.date9}" 
+                                        pattern="dd-MM-yyyy" 
+                                        mask="true" />
                             <h:outputText value="Horario:"/>
                             <p:calendar id="clnHora" 
                                         binding="#{claseVista.hora}"
-                                value="#{calendarView.horaInicio}" 
-                                pattern="HH:mm" 
-                                timeOnly="true"  />
+                                        value="#{calendarView.horaInicio}" 
+                                        pattern="HH:mm" 
+                                        timeOnly="true"  />
                             <h:outputText value="Descripción:"/>
                             <p:inputText id="txtDescripcion" binding="#{claseVista.txtDescripcion}"/>
                             <h:outputText value="Lugar:"/>
                             <p:inputText id="txtDescripcion" binding="#{claseVista.txtLugar}"/>
-                            
-                            
-                            
                         </p:panelGrid>
+
                         
+                        <div align="center">
+                            <p:commandButton value="Prueba"
+                                             id="btnPrueba"
+                                             update="formularioClase"/>
+                            <p:commandButton value="Registrar"
+                                             id="btnRegistrar" 
+                                             update="formularioClase"/>
+                            <p:commandButton value="Modificar"
+                                             id="btnModificar" 
+                                             update="formularioClase"/>
+                            <p:commandButton value="Eliminar"
+                                             id="btnEliminar" 
+                                             update="formularioClase">
+                                <p:confirm header="Confirmación" message="¿Está seguro que desea eliminar contratista?" icon="pi pi-exclamation-triangle" />
+                            </p:commandButton>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+                            </p:confirmDialog>
+                        </div>
+
                         <p:dataTable var="c" value="#{claseVista.listaClases}" rows="10"
                                      paginator="true"
                                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -92,7 +111,7 @@
                             <p:column headerText="Horario">
                                 <h:outputText value="#{c.horario.hours}:#{c.horario.minutes}" />
                             </p:column>
-                            
+
                             <p:column headerText="Lugar">
                                 <h:outputText value="#{c.lugar}" />
                             </p:column>
@@ -106,7 +125,7 @@
                             </f:facet>
 
                         </p:dataTable>
-                        
+
                     </h:form>
                 </p:layoutUnit>
 

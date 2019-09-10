@@ -29,6 +29,15 @@ public class EntrenadorLogica implements EntrenadorLogicaLocal {
         return entrenadorDAO.findAll();
     }
 
+    @Override
+    public Entrenador consultarxCodigo(int codigo) {
+        Entrenador objEntrenador = entrenadorDAO.find(codigo);
+        return objEntrenador;
+    }
+    
+}
+
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-}
+
+    
